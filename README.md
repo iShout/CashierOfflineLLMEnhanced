@@ -13,7 +13,7 @@
 
 开发时使用 `resources/database.db`；安装包使用 Electron `app.getPath("userData")` 目录下的 `database.db`，图片等本地文件位于同目录的 `local-assets/`。
 
-新环境首次启动时，如果对应的运行数据库不存在，应用会从版本库中的脱敏种子库 `resources/database.seed.db` 复制一份独立运行库。已有数据库不会被 seed 覆盖。种子库仅保留 Swifood BIR Demo 餐厅的菜单、桌台、权限和必要配置，不包含订单、支付、退款、打卡、日志、同步队列、真实账号密码或税务身份信息。
+新环境首次启动时，如果对应的运行数据库不存在，应用会从版本库中的脱敏种子库 `resources/database.seed.db` 复制一份独立运行库。已有数据库不会被 seed 覆盖。种子库仅保留 Demo 餐厅的菜单、桌台、权限和必要配置，不包含订单、支付、退款、打卡、日志、同步队列、真实账号密码或税务身份信息。
 
 演示登录账号：
 
