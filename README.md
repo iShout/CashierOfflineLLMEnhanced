@@ -22,7 +22,7 @@
 密码：123456
 ```
 
-维护人员需要从本机完整数据库重新生成脱敏 seed 时，可在应用关闭后执行 `npm run db:seed:build`。该命令以 `resources/database.db` 中 `cq@swifood.com` 所属餐厅为来源，并覆盖 `resources/database.seed.db`；提交前应检查生成脚本的校验结果。
+维护人员需要从本机完整数据库重新生成脱敏 seed 时，可在应用关闭后执行 `npm run db:seed:build`。覆盖 `resources/database.seed.db`；提交前应检查生成脚本的校验结果。
 
 登录验证只读取本地账号及密码。首次使用必须已有准备好的本地账号、餐厅设置和菜单数据；本项目没有新增空库初始化或管理后台。需要迁移时，应在应用关闭后准备本地数据库及关联图片文件。已有业务数据不会因模块精简被清空。
 
@@ -32,7 +32,7 @@
 
 ## Agent 功能模块
 
-`agent/` 是本项目的功能模块，与收银程序共享根目录的 `package.json`、`package-lock.json` 和 `node_modules/`，不再单独安装依赖。源码直接放在 `agent/` 下；`agent/agent.ts` 创建 Agent，`agent/run.ts` 是 CLI 和主进程共用的执行入口，`agent/cli.ts` 保留命令行消息链回放。
+`agent/` 是本项目的功能模块，源码直接放在 `agent/` 下。
 
 开发配置仍使用 `agent/.env` 中的 `DEEPSEEK_API_KEY` 和 `DEEPSEEK_MODEL`，已有配置无需移动。没有配置时可参考 `agent/.env.example`；不要提交 API Key。
 
