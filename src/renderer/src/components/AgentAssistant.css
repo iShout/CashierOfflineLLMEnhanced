@@ -1,0 +1,228 @@
+.agent-assistant-float {
+  inset-inline-end: 28px;
+  bottom: 28px;
+  width: 56px;
+  height: 56px;
+  box-shadow: 0 10px 28px rgba(0, 52, 152, 0.28);
+}
+
+.agent-assistant-float .ant-float-btn-body {
+  width: 56px;
+  height: 56px;
+}
+
+.agent-assistant-float .ant-float-btn-icon {
+  width: auto;
+  font-size: 23px;
+}
+
+.agent-assistant-modal .ant-modal-content {
+  overflow: hidden;
+  padding: 20px 0 0;
+}
+
+.agent-assistant-modal .ant-modal-header {
+  padding: 0 24px 18px;
+}
+
+.agent-assistant-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #102a56;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.agent-assistant-title__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  color: #ffffff;
+  background: linear-gradient(145deg, #174fad, #003498);
+}
+
+.agent-assistant-dialog {
+  display: flex;
+  min-height: 460px;
+  max-height: min(680px, 74vh);
+  flex-direction: column;
+  border-top: 1px solid #edf0f5;
+}
+
+.agent-assistant-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 44px;
+  padding: 6px 20px;
+  color: #667085;
+  background: #ffffff;
+  font-size: 13px;
+}
+
+.agent-assistant-messages {
+  display: flex;
+  min-height: 280px;
+  flex: 1;
+  flex-direction: column;
+  gap: 18px;
+  overflow-y: auto;
+  padding: 22px 24px;
+  background: radial-gradient(circle at 100% 0, rgba(0, 52, 152, 0.07), transparent 38%), #f6f8fc;
+}
+
+.agent-assistant-empty {
+  margin: auto;
+}
+
+.agent-assistant-empty__icon {
+  color: #8da4ce;
+  font-size: 56px;
+}
+
+.agent-assistant-empty__title {
+  color: #1d2939;
+  font-weight: 600;
+}
+
+.agent-assistant-empty__description {
+  max-width: 360px;
+  margin-top: 4px;
+  color: #667085;
+  font-size: 13px;
+}
+
+.agent-message {
+  display: flex;
+  max-width: 86%;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.agent-message--user {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+
+.agent-message--assistant {
+  align-self: flex-start;
+}
+
+.agent-message__identity {
+  display: flex;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #d7e0ef;
+  border-radius: 50%;
+  color: #003498;
+  background: #ffffff;
+}
+
+.agent-message--user .agent-message__identity {
+  border-color: #003498;
+  color: #ffffff;
+  background: #003498;
+}
+
+.agent-message__content {
+  min-width: 0;
+}
+
+.agent-message__name {
+  margin-bottom: 4px;
+  color: #667085;
+  font-size: 12px;
+}
+
+.agent-message--user .agent-message__name {
+  text-align: right;
+}
+
+.agent-message__bubble {
+  border: 1px solid #e1e6ef;
+  border-radius: 4px 16px 16px;
+  padding: 10px 14px;
+  color: #27364d;
+  background: #ffffff;
+  box-shadow: 0 3px 12px rgba(16, 42, 86, 0.05);
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.agent-message--user .agent-message__bubble {
+  border-color: #003498;
+  border-radius: 16px 4px 16px 16px;
+  color: #ffffff;
+  background: #003498;
+}
+
+.agent-message__bubble--thinking {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #667085;
+}
+
+.agent-message__bubble--error {
+  border-color: #ffccc7;
+  color: #a8071a;
+  background: #fff2f0;
+}
+
+.agent-assistant-composer {
+  padding: 16px 20px 18px;
+  border-top: 1px solid #e7ebf2;
+  background: #ffffff;
+}
+
+.agent-assistant-composer__row {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.agent-assistant-composer__row .ant-input {
+  resize: none;
+}
+
+.agent-assistant-send {
+  min-width: 92px;
+  height: 54px;
+}
+
+.agent-assistant-composer__hint {
+  margin-top: 7px;
+  color: #98a2b3;
+  font-size: 12px;
+}
+
+@media (max-width: 760px) {
+  .agent-assistant-float {
+    inset-inline-end: 18px;
+    bottom: 18px;
+  }
+
+  .agent-assistant-modal {
+    max-width: calc(100vw - 24px);
+  }
+
+  .agent-assistant-dialog {
+    max-height: 76vh;
+  }
+
+  .agent-assistant-messages {
+    padding: 18px 16px;
+  }
+
+  .agent-message {
+    max-width: 94%;
+  }
+}

@@ -1,0 +1,35 @@
+@font-face {
+  font-family: "swifood-iconfont";
+  src:
+    url("./iconfont.woff2") format("woff2"),
+    url("./iconfont.woff") format("woff"),
+    url("./iconfont.ttf") format("truetype");
+}
+
+[class*="swifood-icon-"] {
+  font-family: "swifood-iconfont" !important;
+  font-style: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.swifood-icon-delivery::before {
+  content: "\e632";
+}
+
+.swifood-icon-table::before {
+  content: "\e631";
+}
+
+.swifood-icon-counter::before {
+  content: "\e630";
+}
+
+.swifood-icon-take-out::before {
+  content: "\e62c";
+}
+
+.swifood-icon-dinner::before {
+  content: "\e614";
+}

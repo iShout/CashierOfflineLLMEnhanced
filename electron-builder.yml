@@ -1,0 +1,50 @@
+# 使用独立应用标识，避免与在线版或其他同名收银应用共用安装/更新身份。
+appId: com.swifood.cashier.offline.windows
+productName: Swifood Cashier Offline
+directories:
+  buildResources: build
+files:
+  - "!**/.vscode/*"
+  - "!src/*"
+  # Agent 已编译进主进程；不把源码或本机模型密钥打进安装包。
+  - "!agent/**"
+  - "!tsconfig.agent.json"
+  - "!electron.vite.config.{js,ts,mjs,cjs}"
+  - "!{.eslintcache,eslint.config.mjs,.prettierignore,.prettierrc.yaml,dev-app-update.yml,CHANGELOG.md,README.md}"
+  - "!{.env,.env.*,.npmrc,pnpm-lock.yaml}"
+asarUnpack:
+  - resources/**
+win:
+  executableName: swifood-cashier-offline
+  # Windows 可执行文件及其快捷方式统一使用 Swifood 品牌图标。
+  icon: build/swifood.ico
+nsis:
+  artifactName: ${name}-${version}-setup.${ext}
+  shortcutName: ${productName}
+  uninstallDisplayName: ${productName}
+  createDesktopShortcut: always
+  # 安装包和卸载程序显式复用 Swifood 图标，避免回退到 Electron 默认图标。
+  installerIcon: build/swifood.ico
+  uninstallerIcon: build/swifood.ico
+mac:
+  entitlementsInherit: build/entitlements.mac.plist
+  extendInfo:
+    - NSCameraUsageDescription: Application requests access to the device's camera.
+    - NSMicrophoneUsageDescription: Application requests access to the device's microphone.
+    - NSDocumentsFolderUsageDescription: Application requests access to the user's Documents folder.
+    - NSDownloadsFolderUsageDescription: Application requests access to the user's Downloads folder.
+  notarize: false
+dmg:
+  artifactName: ${name}-${version}.${ext}
+linux:
+  target:
+    - AppImage
+    - snap
+    - deb
+  maintainer: electronjs.org
+  category: Utility
+appImage:
+  artifactName: ${name}-${version}.${ext}
+npmRebuild: false
+electronDownload:
+  mirror: https://npmmirror.com/mirrors/electron/

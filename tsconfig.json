@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "allowJs": true,
+    "checkJs": false,
+    "strict": false,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@shared/*": ["src/shared/*"],
+      "@main/*": ["src/main/*"],
+      "@agent/*": ["agent/*"],
+      "@db/*": ["src/main/db/*"],
+      "@preload/*": ["src/preload/*"],
+      "@renderer/*": ["src/renderer/src/*"],
+      "@pages/*": ["src/renderer/src/pages/*"],
+      "@assets/*": ["src/renderer/src/assets/*"],
+      "@app-types/*": ["src/types/*"]
+    },
+    "types": ["node", "electron"]
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.d.ts",
+    "electron.vite.config.mjs"
+  ],
+  "exclude": ["node_modules", "out", "dist"]
+}

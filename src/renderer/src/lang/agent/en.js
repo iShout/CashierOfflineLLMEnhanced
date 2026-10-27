@@ -1,0 +1,16 @@
+export default {
+  title: "Smart Assistant",
+  open: "Open Smart Assistant",
+  conversation_label: "Current conversation",
+  clear: "Clear",
+  empty_title: "Ask about cashier data",
+  empty_description: "Query order details, sales data, and other connected local business information.",
+  input_placeholder: "Enter your question…",
+  send: "Send",
+  thinking: "Checking the data…",
+  you: "You",
+  assistant: "Assistant",
+  request_failed: "Unable to get an answer right now. Please try again.",
+  empty_answer: "This query did not return any displayable content.",
+  input_hint: "Press Enter to send, Shift + Enter for a new line",
+};

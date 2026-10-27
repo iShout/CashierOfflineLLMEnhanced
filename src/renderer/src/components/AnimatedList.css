@@ -1,0 +1,13 @@
+.animated-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.animated-list[style*="--animated-list-gap"] {
+  gap: var(--animated-list-gap);
+}
+
+.animated-list__item {
+  min-width: 0;
+  will-change: transform, opacity;
+}

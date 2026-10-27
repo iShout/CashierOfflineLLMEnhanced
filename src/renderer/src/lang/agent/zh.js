@@ -1,0 +1,16 @@
+export default {
+  title: "智能助手",
+  open: "打开智能助手",
+  conversation_label: "当前对话",
+  clear: "清空",
+  empty_title: "询问收银业务数据",
+  empty_description: "可以查询订单详情、营业数据等已接入的本地业务信息。",
+  input_placeholder: "请输入你的问题…",
+  send: "发送",
+  thinking: "正在查询，请稍候…",
+  you: "你",
+  assistant: "智能助手",
+  request_failed: "暂时无法获取回答，请稍后重试。",
+  empty_answer: "本次查询没有返回可显示的内容。",
+  input_hint: "按 Enter 发送，Shift + Enter 换行",
+};

@@ -1,0 +1,132 @@
+@config "../../../../tailwind.config.js";
+@import "tailwindcss";
+@import "./base.css";
+@import "./icon-font/iconfont.css";
+
+body {
+  display: flex;
+  justify-content: center;
+  overflow: auto;
+  background-color: #fff;
+  background-size: cover;
+}
+
+code {
+  font-weight: 600;
+  padding: 3px 5px;
+  border-radius: 2px;
+  background-color: var(--color-background-mute);
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    SF Mono,
+    Menlo,
+    Consolas,
+    Liberation Mono,
+    monospace;
+  font-size: 85%;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  margin-bottom: 0;
+}
+
+.app-shell {
+  width: 100%;
+}
+
+.page-transition {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.rolling-number {
+  display: inline-flex;
+  align-items: baseline;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.rolling-number__digit {
+  display: inline-block;
+  height: 1em;
+  line-height: 1em;
+  overflow: hidden;
+  vertical-align: baseline;
+}
+
+.rolling-number__digit-track {
+  display: flex;
+  flex-direction: column;
+  will-change: transform;
+}
+
+.rolling-number__digit-item,
+.rolling-number__static {
+  display: inline-block;
+  height: 1em;
+  line-height: 1em;
+}
+
+.slide-in-left {
+  animation: slide-in-left 180ms ease-out;
+}
+
+.slide-out-left {
+  animation: slide-out-left 180ms ease-in;
+}
+
+.radio-item-w-full .ant-radio-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+}
+
+.radio-item-w-full .ant-radio-wrapper > span:last-child {
+  flex: 1;
+  display: block;
+}
+
+.custom-table-header .ant-table-thead > tr > th {
+  background-color: #f1f1f1;
+  color: #003498;
+}
+
+@keyframes slide-in-left {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-out-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@media (max-width: 720px) {
+  .text {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 620px) {
+  .versions {
+    display: none;
+  }
+}
+
+@media (max-width: 350px) {
+  .tip,
+  .actions {
+    display: none;
+  }
+}

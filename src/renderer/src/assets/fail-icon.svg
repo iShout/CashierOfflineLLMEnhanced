@@ -1,0 +1,21 @@
+<svg width="201" height="200" viewBox="0 0 201 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Group 193008">
+<g id="Group 192885">
+<g id="Ellipse 121" filter="url(#filter0_f_5847_32761)">
+<circle cx="100.5" cy="100" r="50" fill="#CF1813"/>
+</g>
+<circle id="Ellipse 120" cx="100.5" cy="100" r="50" fill="#CF1813" fill-opacity="0.3"/>
+<g id="Group 193007">
+<rect id="Rectangle 11736" x="91.5" y="69" width="17.0625" height="41.4375" rx="1" fill="white"/>
+<rect id="Rectangle 11737" x="91.5" y="116.438" width="17.0625" height="14.625" rx="1" fill="white"/>
+</g>
+</g>
+</g>
+<defs>
+<filter id="filter0_f_5847_32761" x="0.5" y="0" width="200" height="200" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="25" result="effect1_foregroundBlur_5847_32761"/>
+</filter>
+</defs>
+</svg>
