@@ -2,6 +2,7 @@ node_modules/
 out/
 .eslintcache
 .DS_Store
+# 可写运行库仅保存在本机；脱敏的 database.seed.db 正常纳入版本控制。
 resources/database.db
 dist/
 .understand-anything

@@ -1,5 +1,11 @@
 # Current Work
 
+## 2026-10-28: Seed Database For Fresh Clones And Installs
+
+- Fresh development and packaged environments are initialized from a tracked sanitized seed while existing runtime databases remain untouched.
+- The public demo account is `admin / 123456` and belongs to the Swifood BIR Demo restaurant selected through the former local account `cq@swifood.com`.
+- `scripts/create-seed-database.mjs` recreates the seed from the ignored local runtime database and validates database integrity, demo authentication and empty dynamic tables.
+
 ## 2026-10-27: POS Device Isolation Removed
 
 - Authentication now creates only an account-and-restaurant session. Renderer persistence, route guards, preload/IPC and main-process session state no longer contain `deviceNo`, and the obsolete local POS binding source/schema has been removed.

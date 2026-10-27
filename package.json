@@ -12,6 +12,7 @@
     "dev": "electron-vite dev",
     "dev:main-debug": "electron-vite dev --inspect=9229",
     "dev:main-break": "electron-vite dev --inspectBrk=9229",
+    "db:seed:build": "node scripts/run-electron-node.mjs scripts/create-seed-database.mjs",
     "agent:check": "tsc --noEmit -p tsconfig.agent.json",
     "swifood-patch": "node scripts/swifood-version.mjs patch",
     "swifood-build:win:test": "node scripts/swifood-version.mjs build-win-test",

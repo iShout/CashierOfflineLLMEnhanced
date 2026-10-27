@@ -1,4 +1,5 @@
 import Database from "better-sqlite3";
+import fs from "node:fs";
 import path from "path";
 import { app } from "electron";
 import { schemas } from "./schemas/schemas";
@@ -15,12 +16,37 @@ import {
 type BSDatabase = Database.Database;
 let db: BSDatabase;
 
+const getSeedDatabasePath = (): string =>
+  app.isPackaged
+    ? path.join(process.resourcesPath, "database.seed.db")
+    : path.join(__dirname, "../../resources/database.seed.db");
+
+// 新环境首次启动时从只读种子库创建独立运行库，已有业务库永不覆盖。
+const initializeDatabaseFromSeed = (dbPath: string): void => {
+  if (fs.existsSync(dbPath)) {
+    return;
+  }
+
+  const seedPath = getSeedDatabasePath();
+  if (!fs.existsSync(seedPath)) {
+    throw new Error(`Database seed file is missing: ${seedPath}`);
+  }
+
+  fs.mkdirSync(path.dirname(dbPath), { recursive: true });
+  fs.copyFileSync(seedPath, dbPath, fs.constants.COPYFILE_EXCL);
+};
+
 const initDB = (dbPathOverride?: string): void => {
   const dbPath =
     dbPathOverride ??
     (app.isPackaged
       ? path.join(app.getPath("userData"), "database.db")
       : path.join(__dirname, "../../resources/database.db"));
+
+  // 测试传入的临时库保持原有空库建表语义，不自动注入演示数据。
+  if (!dbPathOverride) {
+    initializeDatabaseFromSeed(dbPath);
+  }
 
   db = new Database(dbPath);
   createTables();

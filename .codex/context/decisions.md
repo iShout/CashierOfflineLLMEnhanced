@@ -1,5 +1,13 @@
 # Decisions
 
+## 2026-10-28: Sanitized Seed Database Initializes New Environments
+
+- The public repository tracks `resources/database.seed.db`, not the mutable development or installed runtime database.
+- A missing development `resources/database.db` or packaged `userData/database.db` is copied from the seed exactly once; an existing runtime database is never overwritten.
+- The seed is derived from the restaurant associated with `cq@swifood.com`, retains only menu, table, permission and required restaurant configuration data, and exposes one demo login: `admin / 123456`.
+- Orders, payments, refunds, shifts, logs, synchronization state, local assets, original account credentials and identifying BIR fields are excluded or replaced with demo values.
+- Packaged builds explicitly exclude the developer runtime database and ship only the sanitized seed as an extra resource.
+
 ## 2026-10-27: Restaurant Scope Supersedes POS Device Isolation
 
 - The user explicitly removed account-to-POS binding from the standalone, Agent-focused cashier. Authentication and route access require a valid local account and restaurant only.

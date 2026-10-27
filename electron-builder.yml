@@ -6,12 +6,21 @@ directories:
 files:
   - "!**/.vscode/*"
   - "!src/*"
+  # 运行库包含本地业务数据，不进入安装包；安装包只携带脱敏种子库。
+  - "!database.db"
+  - "!database.db-*"
+  - "!resources/database.db"
+  - "!resources/database.db-*"
+  - "!resources/database.seed.db"
   # Agent 已编译进主进程；不把源码或本机模型密钥打进安装包。
   - "!agent/**"
   - "!tsconfig.agent.json"
   - "!electron.vite.config.{js,ts,mjs,cjs}"
   - "!{.eslintcache,eslint.config.mjs,.prettierignore,.prettierrc.yaml,dev-app-update.yml,CHANGELOG.md,README.md}"
   - "!{.env,.env.*,.npmrc,pnpm-lock.yaml}"
+extraResources:
+  - from: resources/database.seed.db
+    to: database.seed.db
 asarUnpack:
   - resources/**
 win:
