@@ -63,3 +63,12 @@ export const productRankingQuerySchema = dateRangeQuerySchema.safeExtend({
     .default(10)
     .describe("返回前多少项数据"),
 });
+
+export const knowledgeQuerySchema = z.object({
+  query: z
+    .string()
+    .trim()
+    .min(1, "检索问题不能为空")
+    .max(500, "检索问题不能超出500字")
+    .describe("需要检索的完整问题；连续追问时补全主题，避免只传“它呢”"),
+});

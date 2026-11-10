@@ -11,7 +11,9 @@ const loadAgentEnvironment = () => {
   const envPath = app.isPackaged
     ? resolve(app.getPath("userData"), "agent.env")
     : resolve(app.getAppPath(), "agent/.env");
-
+  process.env.AGENT_KNOWLEDGE_DIR = app.isPackaged
+    ? resolve(process.resourcesPath, "knowledge")
+    : resolve(app.getAppPath(), "resources/knowledge");
   config({ path: envPath, quiet: true });
 };
 

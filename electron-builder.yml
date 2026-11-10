@@ -21,6 +21,8 @@ files:
 extraResources:
   - from: resources/database.seed.db
     to: database.seed.db
+  - from: resources/knowledge
+    to: knowledges
 asarUnpack:
   - resources/**
 win:

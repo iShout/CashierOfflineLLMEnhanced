@@ -1,5 +1,5 @@
 import { ChatDeepSeek } from "@langchain/deepseek";
-import { getOrderDetail, getSalesSummary, getProductRanking } from "./tools/index.js";
+import { getOrderDetail, getSalesSummary, getProductRanking, searchKnowledge } from "./tools/index.js";
 import dayjs from "dayjs";
 
 import { AIMessage, SystemMessage } from "@langchain/core/messages";
@@ -59,7 +59,7 @@ export const createCashierAgent = () => {
     "当前工具只能读取，不能退款、取消、修改或创建订单。",
   ].join("\n");
 
-  const tools = [getOrderDetail, getSalesSummary, getProductRanking];
+  const tools = [getOrderDetail, getSalesSummary, getProductRanking, searchKnowledge];
 
   const modelWithTools = model.bindTools(tools);
 

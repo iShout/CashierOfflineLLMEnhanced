@@ -1,5 +1,4 @@
 import { AIMessage, BaseMessage, HumanMessage, ToolMessage } from "@langchain/core/messages";
-import { createCashierAgent } from "./agent.js";
 import { cashierAgentCheckpointer } from "./memory.js";
 
 type AgentTraceEntry =
@@ -28,6 +27,8 @@ export async function runCashierAgent(question: string, threadId: string) {
     throw new Error("当前对话缺少会话标识。");
   }
 
+  // 真正提问时才加载模型和知识工具，历史读取与清空只依赖 Checkpointer。
+  const { createCashierAgent } = await import("./agent.js");
   const agent = createCashierAgent();
   const config = {
     configurable: {
