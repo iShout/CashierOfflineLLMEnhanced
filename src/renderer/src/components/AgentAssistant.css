@@ -154,7 +154,6 @@
   box-shadow: 0 3px 12px rgba(16, 42, 86, 0.05);
   line-height: 1.65;
   overflow-wrap: anywhere;
-  white-space: pre-wrap;
 }
 
 .agent-message--user .agent-message__bubble {
@@ -175,6 +174,196 @@
   border-color: #ffccc7;
   color: #a8071a;
   background: #fff2f0;
+}
+
+/* Markdown 使用气泡现有字号和配色，仅补充正文所需的结构化排版。 */
+.agent-markdown.ant-typography {
+  color: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.agent-markdown > :first-child {
+  margin-top: 0;
+}
+
+.agent-markdown > :last-child {
+  margin-bottom: 0;
+}
+
+.agent-markdown p {
+  margin: 0 0 8px;
+  color: inherit;
+}
+
+.agent-markdown h1,
+.agent-markdown h2,
+.agent-markdown h3,
+.agent-markdown h4,
+.agent-markdown h5,
+.agent-markdown h6 {
+  margin: 16px 0 8px;
+  color: inherit;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.agent-markdown h1 {
+  font-size: 1.45em;
+}
+
+.agent-markdown h2 {
+  font-size: 1.3em;
+}
+
+.agent-markdown h3 {
+  font-size: 1.15em;
+}
+
+.agent-markdown h4,
+.agent-markdown h5,
+.agent-markdown h6 {
+  font-size: 1em;
+}
+
+.agent-markdown ul,
+.agent-markdown ol {
+  margin: 0 0 8px;
+  padding-inline-start: 24px;
+}
+
+.agent-markdown li + li {
+  margin-top: 3px;
+}
+
+.agent-markdown li > p {
+  margin-bottom: 3px;
+}
+
+.agent-markdown blockquote {
+  margin: 10px 0;
+  padding: 7px 11px;
+  border-inline-start: 3px solid #9fb1cc;
+  color: #52647f;
+  background: #f5f7fb;
+}
+
+.agent-markdown code {
+  border-radius: 4px;
+  padding: 2px 5px;
+  color: #c7254e;
+  background: #f0f2f5;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 0.9em;
+}
+
+.agent-markdown pre {
+  max-width: 100%;
+  overflow-x: auto;
+  margin: 10px 0;
+  border-radius: 8px;
+  padding: 12px 14px;
+  color: #e9eef7;
+  background: #10233f;
+  line-height: 1.55;
+  white-space: pre;
+}
+
+.agent-markdown pre code {
+  padding: 0;
+  color: inherit;
+  background: transparent;
+  font-size: 0.88em;
+}
+
+.agent-markdown table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  margin: 10px 0;
+  border-collapse: collapse;
+}
+
+.agent-markdown th,
+.agent-markdown td {
+  min-width: 92px;
+  padding: 6px 9px;
+  border: 1px solid #d7dfeb;
+  text-align: start;
+}
+
+.agent-markdown th {
+  background: #f3f6fa;
+  font-weight: 600;
+}
+
+.agent-markdown hr {
+  margin: 13px 0;
+  border: 0;
+  border-top: 1px solid #dfe5ee;
+}
+
+.agent-markdown a {
+  color: #0958d9;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: default;
+}
+
+.agent-markdown input[type="checkbox"] {
+  margin-inline: 0 6px;
+}
+
+.agent-markdown__image-placeholder {
+  display: inline-block;
+  border-radius: 4px;
+  padding: 1px 6px;
+  color: #667085;
+  background: #edf1f6;
+  font-size: 0.9em;
+}
+
+/* 用户气泡沿用品牌蓝，对引用、代码和表格使用半透明层保持可读性。 */
+.agent-message--user .agent-markdown blockquote {
+  border-inline-start-color: rgba(255, 255, 255, 0.65);
+  color: inherit;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.agent-message--user .agent-markdown code {
+  color: inherit;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.agent-message--user .agent-markdown pre {
+  color: #ffffff;
+  background: rgba(0, 18, 62, 0.45);
+}
+
+.agent-message--user .agent-markdown pre code {
+  background: transparent;
+}
+
+.agent-message--user .agent-markdown th,
+.agent-message--user .agent-markdown td {
+  border-color: rgba(255, 255, 255, 0.42);
+}
+
+.agent-message--user .agent-markdown th {
+  background: rgba(255, 255, 255, 0.13);
+}
+
+.agent-message--user .agent-markdown hr {
+  border-top-color: rgba(255, 255, 255, 0.45);
+}
+
+.agent-message--user .agent-markdown a {
+  color: #ffffff;
+}
+
+.agent-message--user .agent-markdown__image-placeholder {
+  color: inherit;
+  background: rgba(255, 255, 255, 0.18);
 }
 
 .agent-assistant-composer {

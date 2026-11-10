@@ -43,7 +43,7 @@ npm run agent:check
 npm run agent:dev -- "今天营业额多少？"
 ```
 
-应用主进程已注册 `agent:ask`，登录后可通过全局悬浮 Smart Assistant 对话框提问，或直接调用 `window.api.agent.ask(question)` 获取 `{ answer, trace }`。模型代码按需加载，应用启动不会调用模型；安装包从 `userData/agent.env` 或进程环境变量读取模型配置，开发机的 `.env` 不进入安装包。
+应用主进程已注册受登录保护的 `agent:ask`、`agent:history` 和 `agent:clear`。登录后可通过全局悬浮 Smart Assistant 对话框提问，或调用 `window.api.agent.ask({ question, conversationId })` 获取 `{ answer, trace }`。用户输入、历史消息和助手回答会在对话气泡中安全渲染 Markdown（支持 GFM 表格、任务列表和代码块），但内存及 IPC 仍保存原始文本。当前使用 LangGraph `MemorySaver` 按餐厅、账号和会话隔离多轮消息；内存会话在应用退出后清空，持久化将在后续学习步骤接入。模型代码按需加载，应用启动不会调用模型；安装包从 `userData/agent.env` 或进程环境变量读取模型配置，开发机的 `.env` 不进入安装包。
 
 当前 Agent 已接入真实订单详情工具，直接复用收银业务方法和现有 SQLite 数据库，并按登录餐厅控制读取范围；不会新建数据库或复制业务查询逻辑。当前 IPC 仍为一次请求一次响应，流式回答尚未接入。
 

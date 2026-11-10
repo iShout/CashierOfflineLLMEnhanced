@@ -1,6 +1,8 @@
 export const IPC_CHANNELS = {
   AGENT: {
     ASK: "agent:ask",
+    HISTORY: "agent:history",
+    CLEAR: "agent:clear",
   },
   APP: {
     GET_VERSION: "app:get-version",

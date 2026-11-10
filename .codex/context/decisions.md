@@ -1,5 +1,18 @@
 # Decisions
 
+## 2026-11-09: Agent Markdown Is Rendered Safely At The UI Boundary
+
+- Agent messages remain raw strings in LangGraph memory and IPC. Both user and assistant bubbles interpret those strings only when rendering, so history restoration and future persistent memory do not require a data migration.
+- Ant Design `Typography` provides the visual container, while `react-markdown`, `remark-gfm` and `remark-breaks` provide parsing. Core Ant Design does not provide a Markdown parser.
+- Raw HTML stays disabled. Message links are visible but cannot navigate the Electron page, and Markdown images render as labeled placeholders instead of initiating remote resource requests.
+
+## 2026-11-09: Agent Short-Term Memory Is Session-Scoped And Main-Process Owned
+
+- The renderer owns only a random conversation UUID. Main IPC constructs the actual LangGraph `thread_id` from restaurant ID, waiter ID and that UUID so one account cannot select another account's checkpoint thread.
+- `MemorySaver` is a single module-level instance shared by every compiled graph in the Electron main process. It is deliberately RAM-only for the current learning checkpoint; application restart loss is expected until step 5.7.
+- Public history contains only human messages and final AI answers. Tool-call and tool-result messages remain in graph state for model continuity but are not exposed in the chat transcript.
+- Clearing a conversation deletes its checkpoint thread before the renderer creates a new UUID. Merely clearing React state is not considered a memory reset.
+
 ## 2026-10-28: Sanitized Seed Database Initializes New Environments
 
 - The public repository tracks `resources/database.seed.db`, not the mutable development or installed runtime database.

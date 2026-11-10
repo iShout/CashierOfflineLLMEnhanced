@@ -1,5 +1,19 @@
 # Current Work
 
+## 2026-11-09: Agent Chat Markdown Rendering
+
+- User questions, restored history and assistant answers now share one safe Markdown renderer based on Ant Design `Typography`, `react-markdown`, GFM and soft-line-break support.
+- Headings, lists, task lists, blockquotes, emphasis, links, code blocks and tables have message-bubble-aware styles. Raw HTML is not rendered, links cannot navigate the Electron page, and remote images are replaced by text placeholders.
+- Markdown is a renderer-only concern: the original message text, RAM checkpoint state, IPC payload and `conversationId` behavior remain unchanged.
+
+## 2026-11-09: Agent RAM Conversation Memory Before Persistence
+
+- LangGraph now compiles with one process-wide `MemorySaver`; repeated requests append to the same `thread_id`, while different conversations stay isolated in RAM.
+- Renderer calls `window.api.agent.ask({ question, conversationId })`, restores public user/final-assistant history, and clears both the checkpoint thread and UI before rotating to a new UUID.
+- Main IPC derives the trusted thread key from restaurant, waiter account and renderer conversation UUID. `agent:ask`, `agent:history` and `agent:clear` all require the current login session and reject invalid conversation IDs.
+- History reads the local checkpointer without requiring a model request. Tool messages remain internal, and each response trace includes only the current turn's tool calls.
+- Step 5.7 persistent storage is intentionally not implemented yet. Restarting the application clears Agent memory even though the renderer retains the conversation UUID.
+
 ## 2026-10-28: Seed Database For Fresh Clones And Installs
 
 - Fresh development and packaged environments are initialized from a tracked sanitized seed while existing runtime databases remain untouched.

@@ -1,4 +1,3 @@
-import { createAgent } from "langchain";
 import { ChatDeepSeek } from "@langchain/deepseek";
 import { getOrderDetail, getSalesSummary, getProductRanking } from "./tools/index.js";
 import dayjs from "dayjs";
@@ -6,6 +5,8 @@ import dayjs from "dayjs";
 import { AIMessage, SystemMessage } from "@langchain/core/messages";
 import { END, MessagesAnnotation, START, StateGraph } from "@langchain/langgraph";
 import { ToolNode } from "@langchain/langgraph/prebuilt";
+
+import { cashierAgentCheckpointer } from "./memory.js";
 
 export const createCashierAgent = () => {
   const apiKey = process.env.DEEPSEEK_API_KEY?.trim();
@@ -89,13 +90,7 @@ export const createCashierAgent = () => {
     .addConditionalEdges("model", routeAfterModel, ["tools", END])
     // 工具结果必须重新交给模型解释。
     .addEdge("tools", "model")
-    .compile();
+    .compile({ checkpointer: cashierAgentCheckpointer });
 
   return graph;
-
-  // return createAgent({
-  //   model,
-  //   tools,
-  //   systemPrompt,
-  // });
 };
