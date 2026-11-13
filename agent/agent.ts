@@ -1,5 +1,11 @@
-import { ChatDeepSeek } from "@langchain/deepseek";
-import { getOrderDetail, getSalesSummary, getProductRanking, searchKnowledge } from "./tools/index.js";
+import { createCashierModel } from "./model.js";
+import {
+  getOrderDetail,
+  getSalesSummary,
+  getProductRanking,
+  searchKnowledge,
+  compareSalesDays,
+} from "./tools/index.js";
 import dayjs from "dayjs";
 
 import { AIMessage, SystemMessage } from "@langchain/core/messages";
@@ -9,35 +15,18 @@ import { ToolNode } from "@langchain/langgraph/prebuilt";
 import { cashierAgentCheckpointer } from "./memory.js";
 
 export const createCashierAgent = () => {
-  const apiKey = process.env.DEEPSEEK_API_KEY?.trim();
-
-  // 未配置密钥时在真实发起请求前给出明确提示。
-  if (!apiKey) {
-    throw new Error("未配置 DEEPSEEK_API_KEY，请设置环境变量或本机 Agent 配置文件。");
-  }
   const today = dayjs();
   const todayText = today.format("YYYY-MM-DD");
   const yesterdayText = today.subtract(1, "day").format("YYYY-MM-DD");
 
-  const model = new ChatDeepSeek({
-    apiKey,
-    model: process.env.DEEPSEEK_MODEL?.trim() || "deepseek-flash",
-    configuration: {
-      baseURL: "https://api.deepseek.com",
-    },
-    modelKwargs: {
-      thinking: {
-        type: "disabled",
-      },
-    },
-    timeout: 60000,
-    maxRetries: 0,
-  });
+  const model = createCashierModel();
 
   const systemPrompt = [
     "你是 Swifood 收银助手，使用中文回答。",
     `收银机本地日期中，今天是 ${todayText}，昨天是 ${yesterdayText}。`,
-    "当前注册了下面只读能力：真实订单详情和真实销售汇总，查询商品销量或商品排行。",
+    "比较两个自然日的销售情况或生成这两天的经营报告时，调用 compare_sales_days。",
+    "从当前问题或对话历史提取两日，较晚的一日作为默认目标日，用户指定方向时遵从用户。",
+    "日期不明确时先询问。以工具返回的事实回答，工具失败时说明失败。",
     "查询商品销量或商品排行时，必须调用 get_product_ranking。",
     "查询营业额、折扣或售出商品数量时，必须调用 get_sales_summary。",
     "调用日期工具时必须传入明确的 YYYY-MM-DD，不能把“今天”原样作为参数。",
@@ -59,7 +48,7 @@ export const createCashierAgent = () => {
     "当前工具只能读取，不能退款、取消、修改或创建订单。",
   ].join("\n");
 
-  const tools = [getOrderDetail, getSalesSummary, getProductRanking, searchKnowledge];
+  const tools = [getOrderDetail, getSalesSummary, getProductRanking, searchKnowledge, compareSalesDays];
 
   const modelWithTools = model.bindTools(tools);
 

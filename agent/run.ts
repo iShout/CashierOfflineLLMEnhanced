@@ -77,10 +77,22 @@ export async function runCashierAgent(question: string, threadId: string) {
     throw new Error("任务尚未生成最终回答。");
   }
 
-  return {
-    answer: lastMessage.text,
-    trace,
-  };
+  const response = { answer: lastMessage.text, trace };
+
+  // 从本轮实际执行过的工具消息取报告，供 IPC 调用方直接读取。
+  const reportMessage = currentTurnMessages
+    .filter(
+      (message): message is ToolMessage => ToolMessage.isInstance(message) && message.name === "compare_sales_days",
+    )
+    .at(-1);
+
+  if (!reportMessage || reportMessage.status === "error") {
+    return response;
+  }
+
+  const { reportSchema } = await import("./analysis/generate.js");
+  const report = reportSchema.parse(JSON.parse(reportMessage.text));
+  return { ...response, report };
 }
 
 export async function getCashierAgentHistory(threadId: string) {

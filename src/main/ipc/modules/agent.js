@@ -66,6 +66,20 @@ export function registerAgentHandlers() {
     // 模型调用期间如果发生退出登录或切换餐厅，不返回旧请求结果。
     assertSessionUnchanged(initialSession);
 
+    // 开发时在终端对照回答、结构化报告和工具结果，避免将调试内容写入应用日志表。
+    if (import.meta.env.DEV && !app.isPackaged) {
+      console.dir(
+        {
+          "[Agent 调试]": {
+            answer: result.answer,
+            report: result.report ?? null,
+            trace: result.trace,
+          },
+        },
+        { depth: null },
+      );
+    }
+
     return result;
   });
 
